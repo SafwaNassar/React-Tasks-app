@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import './App.css';
 import TasksList from './component/TasksList/TasksList';
-// import AddTasks from './component/AddTasks/AddTask';
+import AddTasks from './component/AddTasks/AddTask';
 import Bg from './component/Background/bg';
 
 // import AuthService from "./services/auth.service";
@@ -46,7 +46,7 @@ class App extends Component {
     return (
       <Fragment id="particle-container">
         <Bg/>
-        {/* <AddTasks TasksProps={this.state.task} handleAdd={this.handleAdd}/> */}
+        <AddTasks TasksProps={this.state.task} handleAdd={this.handleAdd}/>
         <TasksList TasksProps={this.state.task} handleDelete={this.handleDelete}/>
       </Fragment>
     );

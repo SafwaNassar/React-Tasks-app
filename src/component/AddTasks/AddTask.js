@@ -1,4 +1,4 @@
-import React ,{Component, Fragment} from './node_modules/react';
+import React ,{Component, Fragment} from 'react';
 import './AddTasks.css';
 
 class AddTasks extends Component{
