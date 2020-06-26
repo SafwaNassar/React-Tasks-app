@@ -1,0 +1,186 @@
+
+   #checklist {
+    --text: #414856;
+    --check: #4F29F0;
+    --disabled: #C3C8DE;
+    --width: 500px;
+    --height: 140px;
+    --border-radius: 10px;
+    background: var(--background);
+    width: var(--width);
+    height: var(--height);
+    border-radius: var(--border-radius);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+    padding: 1px 45px;
+    display: grid;
+    grid-template-columns: 30px auto;
+    -webkit-box-align: center;
+            align-items: center;
+  }
+  #checklist label {
+    color:#414856;
+    opacity: 80%;
+    position: relative;
+    cursor: pointer;
+    display: grid;
+    -webkit-box-align: center;
+            align-items: center;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+  }
+
+  
+  #checklist label::before, #checklist label::after {
+    content: "";
+    position: absolute;
+  }
+  #checklist label::before {
+    height: 2px;
+    width: 8px;
+    left: -27px;
+    background: var(--check);
+    border-radius: 2px;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+  }
+
+
+
+  #checklist input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    height: 15px;
+    width: 15px;
+    outline: none;
+    border: 0;
+    margin: 0 15px 0 0;
+    cursor: pointer;
+    background: var(--background);
+    display: grid;
+    -webkit-box-align: center;
+            align-items: center;
+  }
+
+  
+  #checklist input[type="checkbox"]:checked + label {
+    color: var(--disabled);
+    -webkit-animation: move .3s ease .1s forwards;
+            animation: move .3s ease .1s forwards;
+  }
+  #checklist input[type="checkbox"]:checked + label::before {
+    background: var(--disabled);
+    -webkit-animation: slice .4s ease forwards;
+            animation: slice .4s ease forwards;
+  }
+  
+  @keyframes slice {
+    60% {
+      width: 100%;
+      left: 4px;
+    }
+    100% {
+      width: 100%;
+      left: -2px;
+      padding-left: 0;
+    }
+  }
+  
+  body {
+    background: #E8EBF3;
+    height: 100vh;
+    font: 400 16px 'Varela Round', sans-serif;
+    display: flex;
+            flex-direction: column;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+  }
+/*  */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
+.multi-button {
+  margin-left:340px;
+  margin-right: 10px;
+}
+.multi-button button {
+  background: white;
+  border: 1px solid black;
+  cursor: pointer;
+  font:  sans-serif;
+  letter-spacing: 0.125em;
+  margin: 0px;
+  padding:  5px;
+  position: fixed;
+  text-transform: uppercase;
+}
+.multi-button button:before, .multi-button button:after {
+  content: '';
+  position: absolute;
+  transition: all 0.125s ;
+}
+.multi-button button.cut {
+  background: none;
+  border-color: transparent;
+}
+.multi-button button.cut:before, .multi-button button.cut:after {
+  transition: all 0.175s ease-in-out;
+}
+.multi-button button.cut:before {
+  border: 0px dashed red;
+  left: -0.125em;
+  top: -0.125em;
+  right: -0.125em;
+  bottom: -0.125em;
+  z-index: -1;
+}
+.multi-button button.cut:hover:before, .multi-button button.cut:focus:before {
+  background: white;
+  border-width: 0.125em;
+}
+.multi-button button.cut:after {
+  background: white;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+.multi-button button.copy:after {
+  border: 0.125em dashed red;
+  bottom: -0.125em;
+  left: -0.125em;
+  right: -0.125em;
+  top: -0.125em;
+  z-index: -1;
+}
+.multi-button button.copy:hover:after, .multi-button button.copy:focus:after {
+  bottom: -0.375em;
+  left: 0.125em;
+  right: -0.375em;
+  top: 0.125em;
+}
+.multi-button button.paste:after {
+  border: 0.125em dashed red;
+  bottom: -0.125em;
+  left: -0.125em;
+  right: -0.125em;
+  top: -0.125em;
+}
+.multi-button button.paste:hover:after, .multi-button button.paste:focus:after {
+  bottom: 0.125em;
+  left: 0.125em;
+  right: 0.125em;
+  top: 0.125em;
+}
