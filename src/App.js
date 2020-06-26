@@ -1,14 +1,21 @@
 import React, { Component, Fragment } from 'react';
-
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-import TasksList from './component/TasksList/TasksList';
-import AddTasks from './component/AddTasks/AddTask';
-import Bg from './component/Background/bg';
+// import TasksList from './component/TasksList/TasksList';
+// import AddTasks from './component/AddTasks/AddTask';
+import'./component/Background/bg.css';
+import Loginn from './component/login/loginn' ;
+import Signupp from './component/Signupp/signupp' ;
+import NavBar from './component/NavBar/navBar' ;
+import TaskComponent from './component/taskComponent' ;
 
-// import AuthService from "./services/auth.service";
+import AuthService from "./services/auth.service";
 // import Login from "./component/login.component";
 // import Register from "./component/register.component";
-// import Home from "./component/home.component";
+import Home from "./component/home.component";
+import Bg from './component/Background/bg';
 // import Profile from "./component/profile.component";
 // import BoardUser from "./component/board-user.component";
 // import BoardModerator from "./component/board-moderator.component";
@@ -16,158 +23,161 @@ import Bg from './component/Background/bg';
 
 
 class App extends Component {
-  state={
-    task:[
-            {id: 1,
-            taskDescription:"CreateDashBoard"},
-            {id: 2,
-            taskDescription:"ModifyDashBoard"}
-          ]
-       }
+//   state={
+//     task:[
+//             {id: 1,
+//             taskDescription:"CreateDashBoard"},
+//             {id: 2,
+//             taskDescription:"ModifyDashBoard"}
+//           ]
+//        }
 
 
-  handleDelete =(id)=>{
-    let tasks= this.state.task.filter(task=> task.id!==id);
-    this.setState( { task:tasks})
+//   handleDelete =(id)=>{
+//     let tasks= this.state.task.filter(task=> task.id!==id);
+//     this.setState( { task:tasks})
   
-  } 
-  handleAdd =(task)=>{
-    let tasks= this.state.task;
+//   } 
+//   handleAdd =(task)=>{
+//     let tasks= this.state.task;
 
-    task.id=Math.random()*100;
-    console.log(task)
-    tasks.push(task);
-    this.setState( { task:tasks})
+//     task.id=Math.random()*100;
+//     console.log(task)
+//     tasks.push(task);
+//     this.setState( { task:tasks})
   
-  }
+//   }
 
-  render(){
+//   render(){
 
-    return (
-      <Fragment id="particle-container">
-        <Bg/>
-        <AddTasks TasksProps={this.state.task} handleAdd={this.handleAdd}/>
-        <TasksList TasksProps={this.state.task} handleDelete={this.handleDelete}/>
-      </Fragment>
-    );
-  }
-}
-
-
-// constructor(props) {
-//   super(props);
-//   this.logOut = this.logOut.bind(this);
-
-//   this.state = {
-//     showModeratorBoard: false,
-//     showAdminBoard: false,
-//     currentUser: undefined
-//   };
-// }
-
-// componentDidMount() {
-//   const user = AuthService.getCurrentUser();
-
-//   if (user) {
-//     this.setState({
-//       currentUser: user,
-//       showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-//       showAdminBoard: user.roles.includes("ROLE_ADMIN")
-//     });
+//     return (
+//       <Fragment id="particle-container">
+//         <Bg/>
+//         <AddTasks TasksProps={this.state.task} handleAdd={this.handleAdd}/>
+//         <TasksList TasksProps={this.state.task} handleDelete={this.handleDelete}/>
+//       </Fragment>
+//     );
 //   }
 // }
 
-// logOut() {
-//   AuthService.logout();
-// }
 
-// render() {
-//   const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+constructor(props) {
+  super(props);
+  this.logOut = this.logOut.bind(this);
 
-//   return (
-//     <Router>
-//       <div>
-//         <nav className="navbar navbar-expand navbar-dark bg-dark">
-//           <Link to={"/"} className="navbar-brand">
-//             bezKoder
-//           </Link>
-//           <div className="navbar-nav mr-auto">
-//             <li className="nav-item">
-//               <Link to={"/home"} className="nav-link">
-//                 Home
-//               </Link>
-//             </li>
+  this.state = {
+    showModeratorBoard: false,
+    showAdminBoard: false,
+    currentUser: undefined
+  };
+}
 
-//             {showModeratorBoard && (
-//               <li className="nav-item">
-//                 <Link to={"/mod"} className="nav-link">
-//                   Moderator Board
-//                 </Link>
-//               </li>
-//             )}
+componentDidMount() {
+  const user = AuthService.getCurrentUser();
 
-//             {showAdminBoard && (
-//               <li className="nav-item">
-//                 <Link to={"/admin"} className="nav-link">
-//                   Admin Board
-//                 </Link>
-//               </li>
-//             )}
+  if (user) {
+    this.setState({
+      currentUser: user,
+      showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
+      showAdminBoard: user.roles.includes("ROLE_ADMIN")
+    });
+  }
+}
 
-//             {currentUser && (
-//               <li className="nav-item">
-//                 <Link to={"/user"} className="nav-link">
-//                   User
-//                 </Link>
-//               </li>
-//             )}
-//           </div>
+logOut() {
+  AuthService.logout();
+}
 
-//           {currentUser ? (
-//             <div className="navbar-nav ml-auto">
-//               <li className="nav-item">
-//                 <Link to={"/profile"} className="nav-link">
-//                   {currentUser.username}
-//                 </Link>
-//               </li>
-//               <li className="nav-item">
-//                 <a href="/login" className="nav-link" onClick={this.logOut}>
-//                   LogOut
-//                 </a>
-//               </li>
-//             </div>
-//           ) : (
-//             <div className="navbar-nav ml-auto">
-//               <li className="nav-item">
-//                 <Link to={"/login"} className="nav-link">
-//                   Login
-//                 </Link>
-//               </li>
+render() {
+  // const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
-//               <li className="nav-item">
-//                 <Link to={"/register"} className="nav-link">
-//                   Sign Up
-//                 </Link>
-//               </li>
-//             </div>
-//           )}
-//         </nav>
+  return (
+    <Router>
+      <Fragment id="particle-container">
+        <NavBar/>
+       <Bg/>
+        {/* <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <Link to={"/"} className="navbar-brand">
+            bezKoder
+          </Link>
+          <div className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link to={"/home"} className="nav-link">
+                Home
+              </Link>
+            </li>
 
-//         <div className="container mt-3">
-//           <Switch>
-//             <Route exact path={["/", "/home"]} component={Home} />
-//             <Route exact path="/login" component={Login} />
-//             <Route exact path="/register" component={Register} />
-//             <Route exact path="/profile" component={Profile} />
-//             <Route path="/user" component={BoardUser} />
-//             <Route path="/mod" component={BoardModerator} />
-//             <Route path="/admin" component={BoardAdmin} />
-//           </Switch>
-//         </div>
-//       </div>
-//     </Router>
-//   );
-// }
-// }
+            {showModeratorBoard && (
+              <li className="nav-item">
+                <Link to={"/mod"} className="nav-link">
+                  Moderator Board
+                </Link>
+              </li>
+            )}
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/admin"} className="nav-link">
+                  Admin Board
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/user"} className="nav-link">
+                  User
+                </Link>
+              </li>
+            )}
+          </div>
+
+          {currentUser ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/profile"} className="nav-link">
+                  {currentUser.username}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="/login" className="nav-link" onClick={this.logOut}>
+                  LogOut
+                </a>
+              </li>
+            </div>
+          ) : (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/login"} className="nav-link">
+                  Login
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/register"} className="nav-link">
+                  Sign Up
+                </Link>
+              </li>
+            </div>
+          )}
+        </nav> */}
+        {/* <Bg/> */}
+
+        <div className="container mt-3">
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/login" component={Loginn} />
+            <Route exact path="/register" component={Signupp} />
+            <Route exact path="/tasks" component={TaskComponent} />
+            {/* <Route path="/user" component={BoardUser} />
+            <Route path="/mod" component={BoardModerator} />
+            <Route path="/admin" component={BoardAdmin} /> */}
+          </Switch>
+        </div>
+      </Fragment>
+    </Router>
+  );
+}
+}
 
 export default App;

@@ -1,5 +1,4 @@
-import React ,{Component, Fragment} from './node_modules/react';
-import container from '/component/container/container'
+import React ,{Component} from 'react';
 import './loginn.css';
 
 class Loginn extends Component{
@@ -8,7 +7,7 @@ class Loginn extends Component{
         return(
                     <div class="form form--login">
                         <div class="form--heading">Welcome back!</div>
-                            <form autocomplete="off">
+                            <form class= "safwa" autocomplete="off">
                                 <input type="text" placeholder="Name"/>
                                 <input type="password" placeholder="Password"/> 
                                 <button class="button">Login</button>

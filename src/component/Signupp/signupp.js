@@ -1,4 +1,4 @@
-import React ,{Component, Fragment} from './node_modules/react';
+import React ,{Component} from 'react';
 import './signupp.css';
 
 class Signupp extends Component{
